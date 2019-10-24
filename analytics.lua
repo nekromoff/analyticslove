@@ -72,10 +72,11 @@ function analytics.resetClientID(client_id)
 end
 
 function analytics.createUUID()
+    math.randomseed(os.time())
     local uuid = ""
     local chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     for i = 1, 30 do
-        local l = love.math.random(1, #chars)
+        local l = math.random(1, #chars)
         uuid = uuid .. string.sub(chars, l, l)
     end
     return uuid
