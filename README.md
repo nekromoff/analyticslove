@@ -1,5 +1,7 @@
 # analyticslove
-Google Analytics reporting for Lua LÖVE game engine. It uses the Measurement protocol.
+Google Analytics reporting for Lua LÖVE game engine. It uses Measurement protocol.
+
+Pageviews, events and transactions (standard ecommerce) are supported.
 
 ## Code examples
 ```
@@ -18,3 +20,5 @@ analytics.event('event_category', 'click', 'special')
 analytics.transaction('T11345', 100, 5, 15)
 analytics.transactionItem('T11345', 'product_super', 'P98765', 50, 2)
 ```
+
+See the analytics.lua for more info.
