@@ -71,14 +71,18 @@ function analytics.resetClientID(client_id)
     analytics.client_id=client_id
 end
 
+-- UUID generation fixed by zorg: https://love2d.org/forums/viewtopic.php?f=5&t=87517
 function analytics.createUUID()
     math.randomseed(os.time())
-    local uuid = ""
-    local chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    for i = 1, 30 do
-        local l = math.random(1, #chars)
-        uuid = uuid .. string.sub(chars, l, l)
+    local uuid = {}
+    local char = {[0] = '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'}
+    for i = 1, 32+4 do
+        uuid[i] = char[math.random( 0x0 , 0xF )]
     end
+    uuid[9], uuid[14], uuid[19], uuid[24] = '-', '-', '-', '-'
+    uuid[15] = '4'
+    uuid[20] = char[math.random( 0x8 , 0xB )]
+    uuid = table.concat(uuid)
     return uuid
 end
 
